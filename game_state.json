@@ -28,7 +28,7 @@
     {
       "id": 6,
       "last_attempt": null,
-      "is_closed": true
+      "is_closed": false
     },
     {
       "id": 7,
@@ -75,3 +75,4 @@
   "game_state": "active"
 
 }
+
