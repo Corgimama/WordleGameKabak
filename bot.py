@@ -2,6 +2,21 @@
 """
 Кабак – Telegram‑бот для многопользовательской игры.
 """
+# ----------------------------------------------------------------------
+#  HTTP‑сервер для Render (необходим только для Web Service)
+# ----------------------------------------------------------------------
+import uvicorn
+from fastapi import FastAPI
+
+# FastAPI‑приложение – один простой health‑check
+fastapi_app = FastAPI()
+
+
+@fastapi_app.get("/")
+async def health():
+    """Возвращает 200 OK – используется Render‑ом как проверка порта."""
+    return {"status": "alive"}
+# ----------------------------------------------------------------------
 
 # ──────────────────────  Библиотеки  ──────────────────────
 import os
@@ -727,10 +742,28 @@ def main() -> None:
     app.add_handler(CallbackQueryHandler(callback_handler))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_guess_word))
     app.add_error_handler(universal_error_handler)
+    
+     # --------------------  запуск HTTP‑сервера в фоне ------------
+    async def _run_http():
+        """Запускает uvicorn в фоне, не блокируя основной цикл."""
+        config = uvicorn.Config(
+            fastapi_app,
+            host="0.0.0.0",
+            port=int(os.getenv("PORT", "8080")),   # Render передаёт переменную PORT
+            log_level="error",                    # минимальный шум в логах
+        )
+        server = uvicorn.Server(config)
+        await server.serve()                     # будет работать до SIGTERM
 
-    logger.info("✅ Бот запущен")
+    # Ставим задачу в event‑loop перед стартом polling
+    loop = asyncio.get_event_loop()
+    loop.create_task(_run_http())
+
+    # --------------------  старт polling -------------------------
+    logger.info("✅ Бот запущен, http‑сервер тоже работает")
     app.run_polling()
 
 
 if __name__ == "__main__":
     main()
+
