@@ -1,0 +1,76 @@
+{
+  "buildings": [
+    {
+      "id": 1,
+      "last_attempt": null,
+      "is_closed": true
+    },
+    {
+      "id": 2,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 3,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 4,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 5,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 6,
+      "last_attempt": null,
+      "is_closed": true
+    },
+    {
+      "id": 7,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 8,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 9,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 10,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 11,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 12,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 13,
+      "last_attempt": null,
+      "is_closed": false
+    },
+    {
+      "id": 14,
+      "last_attempt": null,
+      "is_closed": false
+    }
+  ],
+  "queue": [],
+  "game_state": "active"
+}
