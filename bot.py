@@ -731,9 +731,10 @@ def main() -> None:
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_guess_word))
 
     logger.info("✅ Бот запущен")
-    app.run_polling(drop_pending_updates=True)
+    app.run_polling()
 
 
 if __name__ == "__main__":
     main()
+
 
